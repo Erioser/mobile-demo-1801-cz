@@ -4,8 +4,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     mode: 'development',
     entry: {
-        index: './src/views/index/index',
-        mine: './src/views/mine/mine',
+        index: './src/pages/index/index',
+        mine: './src/pages/mine/mine',
     },
     output: {
         path: path.join(__dirname, '../dist'),
@@ -13,10 +13,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/views/index/index.html', filename: 'index.html', chunks: ['index']
+            template: './src/pages/index/index.html', filename: 'index.html', chunks: ['index']
         }),
         new HtmlWebpackPlugin({
-            template: './src/views/mine/mine.html', filename: 'mine.html', chunks: ['mine']
+            template: './src/pages/mine/mine.html', filename: 'mine.html', chunks: ['mine']
         }),
         new ExtractTextPlugin({
             allChunks: true,
@@ -31,6 +31,10 @@ module.exports = {
                     fallback: "style-loader",
                     use: "css-loader"
                 })
+            },
+            {
+                test: /\.html$/,
+                use: 'string-loader'
             },
             {
                 test: /\.js$/,
