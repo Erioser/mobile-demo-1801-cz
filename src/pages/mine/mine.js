@@ -1,4 +1,4 @@
-require('../../stylesheets/common.css')
+import '../../stylesheets/common.css'
 import '../../stylesheets/reset.css'
 import './stylesheets/mine.css'
 import '../../utils/tap'

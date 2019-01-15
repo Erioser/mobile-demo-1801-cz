@@ -56,7 +56,11 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                      presets: ['@babel/preset-env']
+                      presets: ['@babel/preset-env'],
+                      plugins: [
+                          '@babel/plugin-proposal-class-properties',
+                        //   '@babel/plugin-transform-modules-commonjs'
+                      ]
                     }
                 }
             }
@@ -66,7 +70,16 @@ module.exports = {
         contentBase: [path.join(__dirname, "../dist")],
         compress: true,
         // host: '192.168.23.1',
-        port:9000
+        port:9000,
+        proxy: {
+            '/lagou': {
+                target: 'https://m.lagou.com',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/lagou': ''
+                }
+            }
+        }
     }
 
 }
