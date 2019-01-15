@@ -9,9 +9,9 @@ const entry = {}
 const htmls = []
 const pages = get_pages()
 pages.forEach(page => {
-    entry[page] = `./src/pages/${page}/${page}`
+    entry[page] = ['./src/utils/flexible.js', `./src/pages/${page}/${page}`]
     htmls.push(new HtmlWebpackPlugin({
-        template: `./src/pages/${page}/${page}.html`, filename: '../'+ page + '.html', chunks: [page]
+        template: `./src/pages/${page}/${page}.html`, filename: page + '.html', chunks: [page]
     }))
 })
 
@@ -20,7 +20,7 @@ module.exports = {
     mode: 'development',
     entry,
     output: {
-        path: path.join(__dirname, '../dist/js'),
+        path: path.join(__dirname, '../dist'),
         filename: '[name].js'
     },
     plugins: [
@@ -33,7 +33,7 @@ module.exports = {
         // }),
         new ExtractTextPlugin({
             allChunks: true,
-            filename: '../css/[name].css'
+            filename: '[name].css'
         })
     ],
     module: {
@@ -63,8 +63,10 @@ module.exports = {
         ]
     },
     devServer: {
-        port: 9000,
-        contentBase: './dist'
+        contentBase: [path.join(__dirname, "../dist")],
+        compress: true,
+       
+        port:9000
     }
 
 }

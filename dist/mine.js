@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/pages/mine/mine.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -105,6 +105,28 @@ eval("__webpack_require__(/*! ../../stylesheets/common.css */ \"./src/stylesheet
 /***/ (function(module, exports) {
 
 eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./src/stylesheets/common.css?");
+
+/***/ }),
+
+/***/ "./src/utils/flexible.js":
+/*!*******************************!*\
+  !*** ./src/utils/flexible.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("(function flexible(window, document) {\n  var docEl = document.documentElement;\n  var dpr = window.devicePixelRatio || 1; // adjust body font size\n\n  function setBodyFontSize() {\n    if (document.body) {\n      // document.body.style.fontSize = (12 * dpr) + 'px'\n      document.body.style.fontSize = 12 + 'px';\n    } else {\n      document.addEventListener('DOMContentLoaded', setBodyFontSize);\n    }\n  }\n\n  setBodyFontSize(); // set 1rem = viewWidth / 10\n\n  function setRemUnit() {\n    var rem = docEl.clientWidth / 10;\n    docEl.style.fontSize = rem + 'px';\n  }\n\n  setRemUnit(); // reset rem unit on page resize\n\n  window.addEventListener('resize', setRemUnit);\n  window.addEventListener('pageshow', function (e) {\n    if (e.persisted) {\n      setRemUnit();\n    }\n  }); // detect 0.5px supports\n\n  if (dpr >= 2) {\n    var fakeBody = document.createElement('body');\n    var testElement = document.createElement('div');\n    testElement.style.border = '.5px solid transparent';\n    fakeBody.appendChild(testElement);\n    docEl.appendChild(fakeBody);\n\n    if (testElement.offsetHeight === 1) {\n      docEl.classList.add('hairlines');\n    }\n\n    docEl.removeChild(fakeBody);\n  }\n})(window, document);\n\n//# sourceURL=webpack:///./src/utils/flexible.js?");
+
+/***/ }),
+
+/***/ 1:
+/*!***********************************************************!*\
+  !*** multi ./src/utils/flexible.js ./src/pages/mine/mine ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! ./src/utils/flexible.js */\"./src/utils/flexible.js\");\nmodule.exports = __webpack_require__(/*! ./src/pages/mine/mine */\"./src/pages/mine/mine.js\");\n\n\n//# sourceURL=webpack:///multi_./src/utils/flexible.js_./src/pages/mine/mine?");
 
 /***/ })
 

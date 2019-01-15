@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/pages/index/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _stylesheets_common_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../stylesheets/common.css */ \"./src/stylesheets/common.css\");\n/* harmony import */ var _stylesheets_common_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_common_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _javascripts_controllers_indexController__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./javascripts/controllers/indexController */ \"./src/pages/index/javascripts/controllers/indexController.js\");\n// require('../../stylesheets/common.css')\n\n\n_javascripts_controllers_indexController__WEBPACK_IMPORTED_MODULE_1__[\"default\"].run();\n\n//# sourceURL=webpack:///./src/pages/index/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _stylesheets_common_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../stylesheets/common.css */ \"./src/stylesheets/common.css\");\n/* harmony import */ var _stylesheets_common_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_common_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _stylesheets_index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stylesheets/index.css */ \"./src/pages/index/stylesheets/index.css\");\n/* harmony import */ var _stylesheets_index_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_index_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _javascripts_controllers_indexController__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./javascripts/controllers/indexController */ \"./src/pages/index/javascripts/controllers/indexController.js\");\n// require('../../stylesheets/common.css')\n\n\n\n_javascripts_controllers_indexController__WEBPACK_IMPORTED_MODULE_2__[\"default\"].run();\nconsole.log('hahaha!');\nconsole.log('hahaha!');\nconsole.log('hahaha!');\nconsole.log('hahaha!');\n\n//# sourceURL=webpack:///./src/pages/index/index.js?");
 
 /***/ }),
 
@@ -145,6 +145,17 @@ eval("module.exports = \"<div>{{ title }}</div>\"\n\n//# sourceURL=webpack:///./
 
 /***/ }),
 
+/***/ "./src/pages/index/stylesheets/index.css":
+/*!***********************************************!*\
+  !*** ./src/pages/index/stylesheets/index.css ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./src/pages/index/stylesheets/index.css?");
+
+/***/ }),
+
 /***/ "./src/stylesheets/common.css":
 /*!************************************!*\
   !*** ./src/stylesheets/common.css ***!
@@ -153,6 +164,28 @@ eval("module.exports = \"<div>{{ title }}</div>\"\n\n//# sourceURL=webpack:///./
 /***/ (function(module, exports) {
 
 eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./src/stylesheets/common.css?");
+
+/***/ }),
+
+/***/ "./src/utils/flexible.js":
+/*!*******************************!*\
+  !*** ./src/utils/flexible.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("(function flexible(window, document) {\n  var docEl = document.documentElement;\n  var dpr = window.devicePixelRatio || 1; // adjust body font size\n\n  function setBodyFontSize() {\n    if (document.body) {\n      // document.body.style.fontSize = (12 * dpr) + 'px'\n      document.body.style.fontSize = 12 + 'px';\n    } else {\n      document.addEventListener('DOMContentLoaded', setBodyFontSize);\n    }\n  }\n\n  setBodyFontSize(); // set 1rem = viewWidth / 10\n\n  function setRemUnit() {\n    var rem = docEl.clientWidth / 10;\n    docEl.style.fontSize = rem + 'px';\n  }\n\n  setRemUnit(); // reset rem unit on page resize\n\n  window.addEventListener('resize', setRemUnit);\n  window.addEventListener('pageshow', function (e) {\n    if (e.persisted) {\n      setRemUnit();\n    }\n  }); // detect 0.5px supports\n\n  if (dpr >= 2) {\n    var fakeBody = document.createElement('body');\n    var testElement = document.createElement('div');\n    testElement.style.border = '.5px solid transparent';\n    fakeBody.appendChild(testElement);\n    docEl.appendChild(fakeBody);\n\n    if (testElement.offsetHeight === 1) {\n      docEl.classList.add('hairlines');\n    }\n\n    docEl.removeChild(fakeBody);\n  }\n})(window, document);\n\n//# sourceURL=webpack:///./src/utils/flexible.js?");
+
+/***/ }),
+
+/***/ 0:
+/*!*************************************************************!*\
+  !*** multi ./src/utils/flexible.js ./src/pages/index/index ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! ./src/utils/flexible.js */\"./src/utils/flexible.js\");\nmodule.exports = __webpack_require__(/*! ./src/pages/index/index */\"./src/pages/index/index.js\");\n\n\n//# sourceURL=webpack:///multi_./src/utils/flexible.js_./src/pages/index/index?");
 
 /***/ })
 
