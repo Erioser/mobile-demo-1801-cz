@@ -1,26 +1,39 @@
 const path = require('path')
+const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+// 需求，根据pages里由几个文件夹，就认为有几个页面
+
+const entry = {}
+const htmls = []
+const pages = get_pages()
+pages.forEach(page => {
+    entry[page] = `./src/pages/${page}/${page}`
+    htmls.push(new HtmlWebpackPlugin({
+        template: `./src/pages/${page}/${page}.html`, filename: '../'+ page + '.html', chunks: [page]
+    }))
+})
+
+
 module.exports = {
     mode: 'development',
-    entry: {
-        index: './src/pages/index/index',
-        mine: './src/pages/mine/mine',
-    },
+    entry,
     output: {
-        path: path.join(__dirname, '../dist'),
+        path: path.join(__dirname, '../dist/js'),
         filename: '[name].js'
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/pages/index/index.html', filename: 'index.html', chunks: ['index']
-        }),
-        new HtmlWebpackPlugin({
-            template: './src/pages/mine/mine.html', filename: 'mine.html', chunks: ['mine']
-        }),
+        ...htmls,
+        // new HtmlWebpackPlugin({
+        //     template: './src/pages/index/index.html', filename: 'index.html', chunks: ['index']
+        // }),
+        // new HtmlWebpackPlugin({
+        //     template: './src/pages/mine/mine.html', filename: 'mine.html', chunks: ['mine']
+        // }),
         new ExtractTextPlugin({
             allChunks: true,
-            filename: '[name].css'
+            filename: '../css/[name].css'
         })
     ],
     module: {
@@ -50,7 +63,29 @@ module.exports = {
         ]
     },
     devServer: {
-        port: 9000
+        port: 9000,
+        contentBase: './dist'
     }
+
+}
+
+
+// 如何得知pages中有几个文件夹
+function get_pages() {
+    // 页面所在的路径
+    let _path = path.join(__dirname, '../src/pages')
+    try {
+        // 读取pages目录内容
+        let result = fs.readdirSync(_path)
+        if ( !result.length ) return [];
+        // 如果有内容的话，判断是不是文件夹
+        return result.filter(_p => {
+            let stat = fs.statSync(path.join(_path,_p))
+            return stat.isDirectory()
+        })
+    }catch (err) {
+        throw new Error('pages目录出问题了。。。')
+    }
+    
 
 }

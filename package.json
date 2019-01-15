@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.2.3",
-    "art-template": "^4.13.2"
+    "art-template": "^4.13.2",
+    "lodash": "^4.17.11"
   }
 }
